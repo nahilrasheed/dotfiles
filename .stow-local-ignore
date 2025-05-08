@@ -1,9 +1,0 @@
-
-\.git
-\.gitignore
-\.gitmodules
-
-^/README.*
-^/LICENSE.*
-
-windows
