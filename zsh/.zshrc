@@ -84,6 +84,7 @@ setopt hist_save_no_dups
 setopt hist_ignore_dups
 setopt hist_find_no_dups
 setopt extendedglob
+setopt globdots
 
 # enable color support of ls, less and man, and also add handy aliases
 if [ -x /usr/bin/dircolors ]; then
@@ -199,21 +200,20 @@ mkdirg() {
 # Aliases
 ##########################################
 
-#ls aliases
-alias ls='ls -Fh --color=always'
+#ls aliases | using eza
+alias ls='eza -F --icons'		# use eza instead of ls
+alias l='ls -l'				# long listing format
 
-alias ll='ls -lA'       # long listing format
-alias la='ls -A'	# show hidden files
-alias l='ls -l'
+alias la='ls -a'			# show hidden files
+alias ll='ls -lagh'    			# long listing with hidden files
 
-alias lss='ls -lSr' 	          # sort by size
-alias lx='ls -lXBh'               # sort by extension
-alias lr='ls -lRh'                # recursive ls
-alias lt='ls -ltrh'               # sort by date
-alias lw='ls -xAh'                # wide listing format
-alias labc='ls -lap'              # alphabetical sort
-alias lf="ls -l | egrep -v '^d'"  # files only
-alias ldir="ls -l | egrep '^d'"   # directories only
+alias lss='ll -s size' 			# sort by size
+alias lsd='ll -s size --total-size' 	# sort by size show the size of a directory as the size of all files and directories inside
+alias lx='ll -s extension'    		# sort by extension
+alias lt='ll -lrs modified'    		# sort by modified date
+alias lf="ll -f"  			# files only
+alias ldir="ll -D"   			# directories only
+alias lsg="ll --git --git-repos"	# show each files git status and root of git-tree status
 
 # alias to show the date
 alias da='date "+%Y-%m-%d %A %T %Z"'
@@ -306,3 +306,5 @@ export PATH=$PATH:/home/neo/.spicetify
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+. "$HOME/.local/bin/env"
